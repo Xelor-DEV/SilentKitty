@@ -1,20 +1,21 @@
 using NaughtyAttributes;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AudioConfig", menuName = "ScriptableObjects/Audio/AudioConfig")]
 public class AudioConfig : ScriptableObject
 {
-    [BoxGroup("Game Volume")]
-    [SerializeField, Range(0.0001f, 1f), Tooltip("Volume for music")]
-    private float musicVolume;
+    [BoxGroup("Volume Settings")]
+    [Range(0.001f, 1f), Tooltip("Controla el volumen de la música (0.001f = silencio, 1 = volumen máximo)")]
+    [SerializeField] private float musicVolume = 0.5f;
 
-    [BoxGroup("Game Volume")]
-    [SerializeField, Range(0.0001f, 1f), Tooltip("Volume for sound effects")]
-    private float sfxVolume;
+    [BoxGroup("Volume Settings")]
+    [Range(0.001f, 1f), Tooltip("Controla el volumen de los efectos de sonido (0.001f = silencio, 1 = volumen máximo)")]
+    [SerializeField] private float sfxVolume = 0.5f;
 
-    [BoxGroup("Game Volume")]
-    [SerializeField, Range(0.0001f, 1f), Tooltip("Master volume for all audio")]
-    private float masterVolume;
+    [BoxGroup("Volume Settings")]
+    [Range(0.001f, 1f), Tooltip("Controla el volumen general del audio (0.001f = silencio, 1 = volumen máximo)")]
+    [SerializeField] private float masterVolume = 0.5f;
 
     public float MusicVolume
     {

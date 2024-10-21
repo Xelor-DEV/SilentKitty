@@ -1,10 +1,14 @@
 using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [BoxGroup("Managers")]
     [SerializeField] private UIManager uiManager;
+
+    [BoxGroup("Managers")]
     [SerializeField] private AudioManager audioManager;
 
     private void Start()

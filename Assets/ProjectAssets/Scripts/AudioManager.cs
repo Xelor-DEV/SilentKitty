@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,33 +10,37 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [BoxGroup("Audio Settings")]
-    [SerializeField] private AudioMixer audioMixer;
+    [BoxGroup("Audio Mixer Settings")]
+    [SerializeField, Required] private AudioMixer audioMixer;
 
     [BoxGroup("Audio Sources")]
-    [SerializeField] private AudioSource musicAudioSource;
+    [SerializeField, Required] private AudioSource musicAudioSource;
 
     [BoxGroup("Audio Sources")]
-    [SerializeField] private AudioSource sfxAudioSource;
+    [SerializeField, Required] private AudioSource sfxAudioSource;
 
     [BoxGroup("Audio Clips")]
-    [ReorderableList][SerializeField] private AudioClip[] musicClips;
+    [ReorderableList]
+    [SerializeField] private AudioClip[] musicClips;
 
     [BoxGroup("Audio Clips")]
-    [ReorderableList][SerializeField] private AudioClip[] sfxClips;
+    [ReorderableList]
+    [SerializeField] private AudioClip[] sfxClips;
 
-    [BoxGroup("Audio Settings")]
-    [Expandable][SerializeField] private AudioConfig audioConfig;
+    [BoxGroup("Audio Configuration")]
+    [Expandable]
+    [SerializeField] private AudioConfig audioConfig;
+
+    [BoxGroup("Fade Settings")]
+    [Range(0.1f, 5.0f)]
+    [SerializeField, Tooltip("Duración del fade de música en segundos")]
+    private float fadeDuration = 1.0f;
 
     private Stack<AudioSource> sfxSourceStack = new Stack<AudioSource>();
 
     [BoxGroup("Fade Settings")]
-    [Range(0.1f, 5f)]
-    [SerializeField] private float fadeDuration = 1.0f; // Duración del fade out
-
-    [BoxGroup("Fade Settings")]
-    [ReadOnly]
-    private bool isFading = false; // Bandera para controlar si hay un fade en curso
+    [ReadOnly] 
+    [SerializeField] private bool isFading = false;
 
     public AudioConfig AudioConfig
     {
@@ -97,7 +102,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator FadeOutMusicAndPlayNew(int newMusicIndex)
     {
-        isFading = true; // Marcar que estamos en medio de un fade
+        isFading = true; // Se esta marcando que se inicio el fade
 
         // Realizar el fade out
         float currentVolume;
@@ -112,7 +117,9 @@ public class AudioManager : MonoBehaviour
         }
 
         // Parar la música anterior y reproducir la nueva
-        PlayMusic(newMusicIndex);
+        musicAudioSource.Stop();
+        musicAudioSource.clip = musicClips[newMusicIndex];
+        musicAudioSource.Play();
 
         // Realizar fade in de la nueva música
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
