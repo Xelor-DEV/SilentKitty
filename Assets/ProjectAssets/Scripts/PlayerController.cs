@@ -36,26 +36,7 @@ public class PlayerController : MonoBehaviour
         ApplyGravityMultipliers();
         LimitFallSpeed();
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Verificar si el objeto tiene el tag "Pushable"
-        if (collision.gameObject.CompareTag("Pushable"))
-        {
-            PlaceableObject placeableObject = collision.gameObject.GetComponent<PlaceableObject>();
-
-            if (placeableObject != null && placeableObject.IsGameModeStarted == true)
-            {
-                // Obtener la fuerza de empuje del objeto
-                float objectPushForce = placeableObject.PushForce;
-
-                // Aplicar fuerza en la dirección del jugador
-                Vector2 pushDirection = new Vector2(horizontalDirection, 0).normalized;
-                collision.rigidbody.AddForce(pushDirection * objectPushForce, ForceMode2D.Impulse);
-            }
-        }
-    }
-
+    
 
     public void GetMovementHorizontalInput(InputAction.CallbackContext context)
     {

@@ -57,4 +57,5 @@ public class GameManager : MonoBehaviour
             Debug.Log("No existe un UIManager ni un AudioManager");
         }
     }
+
 }

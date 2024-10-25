@@ -1,31 +1,21 @@
 using UnityEngine;
 using System;
+using NaughtyAttributes;
+using Unity.VisualScripting;
 
 public abstract class PlaceableObject : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody2D;
     protected bool isPlaced = false;
     protected bool isGameModeStarted = false;
-    protected float pushForce;
-
-    public float PushForce
-    {
-        get
-        {
-            return pushForce;
-        }
-        protected set
-        {
-            pushForce = value;
-        }
-    }
+    [SerializeField] protected float mass;
     public bool IsGameModeStarted
     {
         get
         {
             return isGameModeStarted;
         }
-        protected set
+        set
         {
             isGameModeStarted = value;
         }
@@ -36,24 +26,41 @@ public abstract class PlaceableObject : MonoBehaviour
         {
             return isPlaced;
         }
-        protected set
+        set
         {
             isPlaced = value;
         }
     }
 
     public event Action OnPlaced;
-    public event Action OnGameModeStart;
 
     protected virtual void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _rigidbody2D.gravityScale = 0;
+        
+    }
+    protected virtual void Start()
+    {
+        _rigidbody2D.mass = mass;
+        _rigidbody2D.isKinematic = true;
+    }
+    protected virtual void Update()
+    {
+
+    }
+    protected virtual void OnEnable()
+    {
+
+    }
+    protected virtual void OnDisable()
+    {
+
     }
     public virtual void Place()
     {
         OnPlaced?.Invoke();
-        _rigidbody2D.gravityScale = 1;
+        _rigidbody2D.isKinematic = false;
         isPlaced = true;
     }
+
 }

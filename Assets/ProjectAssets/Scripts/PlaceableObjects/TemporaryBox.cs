@@ -14,7 +14,24 @@ public class TemporaryBox : Box
         _timer.OnTimerUpdate += UpdateTimerUI;
         _timer.OnTimerComplete += DestroyBox;
     }
+    protected override void OnEnable()
+    {
+        GameManagerGame.OnGameModeStart += StartTimer;
+    }
 
+    protected override void OnDisable()
+    {
+        GameManagerGame.OnGameModeStart -= StartTimer;
+    }
+    public void StartTimer()
+    {
+        _timer.Start();
+    }
+
+    protected override void Update()
+    {
+        _timer.Update();
+    }
 
     private void UpdateTimerUI(float progress)
     {
@@ -24,6 +41,6 @@ public class TemporaryBox : Box
 
     private void DestroyBox()
     {
-        Destroy(gameObject); // Destruye la caja temporal
+        Destroy(this.gameObject);
     }
 }

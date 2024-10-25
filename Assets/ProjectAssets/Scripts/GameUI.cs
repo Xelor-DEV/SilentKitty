@@ -1,14 +1,6 @@
 using UnityEngine;
 
-public class GameUI : UIManager
+public class GameUI : UIPanelManager
 {
-    void Start()
-    {
-        
-    }
 
-    void Update()
-    {
-        
-    }
 }
