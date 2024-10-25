@@ -15,17 +15,6 @@ public class TemporaryBox : Box
         _timer.OnTimerComplete += DestroyBox;
     }
 
-    protected override void OnPlacedAction()
-    {
-        base.OnPlacedAction();
-        // Activar temporizador cuando se coloque
-        _timer.ResetAndStart();
-    }
-
-    public void OnGameModeStart()
-    {
-        _timer.ResetAndStart();
-    }
 
     private void UpdateTimerUI(float progress)
     {

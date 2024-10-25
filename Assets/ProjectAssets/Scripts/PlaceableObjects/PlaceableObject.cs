@@ -5,6 +5,7 @@ public abstract class PlaceableObject : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody2D;
     protected bool isPlaced = false;
+    protected bool isGameModeStarted = false;
     protected float pushForce;
 
     public float PushForce
@@ -16,6 +17,28 @@ public abstract class PlaceableObject : MonoBehaviour
         protected set
         {
             pushForce = value;
+        }
+    }
+    public bool IsGameModeStarted
+    {
+        get
+        {
+            return isGameModeStarted;
+        }
+        protected set
+        {
+            isGameModeStarted = value;
+        }
+    }
+    public bool IsPlaced
+    {
+        get
+        {
+            return isPlaced;
+        }
+        protected set
+        {
+            isPlaced = value;
         }
     }
 

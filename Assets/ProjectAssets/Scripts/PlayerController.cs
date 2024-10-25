@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             PlaceableObject placeableObject = collision.gameObject.GetComponent<PlaceableObject>();
 
-            if (placeableObject != null && )
+            if (placeableObject != null && placeableObject.IsGameModeStarted == true)
             {
                 // Obtener la fuerza de empuje del objeto
                 float objectPushForce = placeableObject.PushForce;

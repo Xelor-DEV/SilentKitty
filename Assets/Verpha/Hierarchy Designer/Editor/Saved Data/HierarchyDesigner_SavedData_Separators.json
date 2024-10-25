@@ -3,16 +3,16 @@
         {
             "Name": "Managers",
             "TextColor": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
                 "a": 1.0
             },
             "IsGradientBackground": false,
             "BackgroundColor": {
-                "r": 0.125490203499794,
-                "g": 0.4941176474094391,
-                "b": 0.2823529541492462,
+                "r": 0.40452972054481509,
+                "g": 0.698113203048706,
+                "b": 0.306247740983963,
                 "a": 1.0
             },
             "BackgroundGradient": {
@@ -86,7 +86,7 @@
                 "m_NumColorKeys": 2,
                 "m_NumAlphaKeys": 2
             },
-            "FontSize": 14,
+            "FontSize": 16,
             "FontStyle": 1,
             "TextAnchor": 4,
             "ImageType": 0
@@ -94,16 +94,16 @@
         {
             "Name": "Camera",
             "TextColor": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
                 "a": 1.0
             },
             "IsGradientBackground": false,
             "BackgroundColor": {
-                "r": 0.26326096057891848,
-                "g": 0.6415094137191773,
-                "b": 0.6359469294548035,
+                "r": 0.31025272607803347,
+                "g": 0.7924528121948242,
+                "b": 0.7193973064422607,
                 "a": 1.0
             },
             "BackgroundGradient": {
@@ -177,7 +177,7 @@
                 "m_NumColorKeys": 2,
                 "m_NumAlphaKeys": 2
             },
-            "FontSize": 14,
+            "FontSize": 16,
             "FontStyle": 1,
             "TextAnchor": 4,
             "ImageType": 0
