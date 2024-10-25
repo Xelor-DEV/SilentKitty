@@ -5,6 +5,7 @@ public class TemporaryBox : Box
 {
     [SerializeField] private float disappearTime;
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private Canvas canvas;
     private Timer _timer;
 
     protected override void Awake()
@@ -14,6 +15,17 @@ public class TemporaryBox : Box
         _timer.OnTimerUpdate += UpdateTimerUI;
         _timer.OnTimerComplete += DestroyBox;
     }
+    protected override void Start()
+    {
+        base.Start();
+        timerText.text = disappearTime.ToString();
+    }
+    protected override void Update()
+    {
+        _timer.Update();
+        KeepTextAligned();
+    }
+
     protected override void OnEnable()
     {
         GameManagerGame.OnGameModeStart += StartTimer;
@@ -28,15 +40,18 @@ public class TemporaryBox : Box
         _timer.Start();
     }
 
-    protected override void Update()
-    {
-        _timer.Update();
-    }
-
     private void UpdateTimerUI(float progress)
     {
         float timeRemaining = disappearTime * (1 - progress);
-        timerText.text = timeRemaining.ToString("F2");
+        timerText.text = timeRemaining.ToString("F0");
+    }
+
+    private void KeepTextAligned()
+    {
+        if (canvas != null)
+        {
+            canvas.transform.rotation = Quaternion.identity;
+        }
     }
 
     private void DestroyBox()
