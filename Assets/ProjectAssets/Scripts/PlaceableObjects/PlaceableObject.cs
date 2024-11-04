@@ -51,15 +51,18 @@ public abstract class PlaceableObject : MonoBehaviour
     {
 
     }
+
     protected virtual void OnDisable()
     {
 
     }
-    public virtual void Place()
+    public void invoc()
     {
         OnPlaced?.Invoke();
+    }
+    protected virtual void Place()
+    {
         _rigidbody2D.isKinematic = false;
         isPlaced = true;
     }
-
 }

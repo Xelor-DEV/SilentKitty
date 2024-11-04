@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002583b75b6780f48b608812f7173517, type: 3}
-  m_Name: AudioConfig
+  m_Script: {fileID: 11500000, guid: fb43fd8a3be82034eb99424267465d71, type: 3}
+  m_Name: Level3
   m_EditorClassIdentifier: 
-  musicVolume: 0.1
-  sfxVolume: 0.1
-  masterVolume: 0.1
+  levelNumber: 2
+  initialPosition: {x: -7.2, y: -3.877}
+  status: 0

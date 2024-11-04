@@ -6,12 +6,26 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [BoxGroup("Managers")]
-    [SerializeField] private UIManager uiManager;
+    [SerializeField] protected UIManager uiManager;
 
     [BoxGroup("Managers")]
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField] protected AudioManager audioManager;
 
-    private void Start()
+    [SerializeField] private LevelData levelData;
+
+    public LevelData LevelData
+    {
+        get
+        {
+            return levelData;
+        }
+        set
+        {
+            levelData = value;
+        }
+    }
+
+    protected virtual void Start()
     {
         LoadAudioConfig();
     }

@@ -33,4 +33,21 @@ public class UIManager : MonoBehaviour
             return sfxSlider;
         }
     }
+
+    [SerializeField] protected Button levelButton;
+    public void UpdateLevelButton(LevelData levelData)
+    {
+        switch (levelData.Status)
+        {
+            case LevelStatus.Locked:
+                levelButton.interactable = false;
+                break;
+            case LevelStatus.Unlocked:
+                levelButton.interactable = true;
+                break;
+            case LevelStatus.Completed:
+                levelButton.interactable = true;
+                break;
+        }
+    }
 }

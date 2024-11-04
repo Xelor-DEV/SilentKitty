@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlayerMovementStats playerConfig;
     [SerializeField] private LayerMask groundLayers;
+
+    static public event Action OnPlayerWin;
+    static public event Action OnPlayerLose;
 
     void Awake()
     {
@@ -36,7 +40,26 @@ public class PlayerController : MonoBehaviour
         ApplyGravityMultipliers();
         LimitFallSpeed();
     }
-    
+    private void OnEnable()
+    {
+        OnPlayerWin += StopMovement;
+        OnPlayerLose += StopMovement;
+    }
+    private void OnDisable()
+    {
+        OnPlayerWin -= StopMovement;
+        OnPlayerLose -= StopMovement;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Fish":
+                OnPlayerWin?.Invoke();
+                break;
+        }
+    }
 
     public void GetMovementHorizontalInput(InputAction.CallbackContext context)
     {
@@ -134,5 +157,10 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, playerConfig.maxFallSpeed);
         }
+    }
+
+    public void StopMovement()
+    {
+        gameObject.SetActive(false);
     }
 }
